@@ -13,12 +13,12 @@ import org.openstack4j.openstack.common.ListResult;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 
 /**
  * A router is used to interconnect subnets and forward traffic among them. Another feature of the router is to NAT internal traffic to external networks.
- * 
+ *
  * @author Jeremy Unruh
  */
 @JsonRootName("router")
@@ -28,10 +28,10 @@ public class NeutronRouter implements Router {
 
 	@JsonProperty("id")
 	private String id;
-	
+
 	@JsonProperty("name")
 	private String name;
-	
+
 	@JsonProperty("status")
 	private State status;
 
@@ -46,16 +46,16 @@ public class NeutronRouter implements Router {
 
 	@JsonProperty("routes")
 	private List<NeutronHostRoute> routes;
-	
+
 	public static RouterBuilder builder() {
 		return new RouterConcreteBuilder();
 	}
-	
+
 	@Override
 	public RouterBuilder toBuilder() {
 		return new RouterConcreteBuilder(this);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -136,26 +136,26 @@ public class NeutronRouter implements Router {
 	public ExternalGateway getExternalGatewayInfo() {
 		return externalGatewayInfo;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this).omitNullValues()
+		return MoreObjects.toStringHelper(this).omitNullValues()
 				    .add("id", id).add("name", name).add("tenantId", tenantId).add("admin_state_up", adminStateUp)
 				    .add("external_gateway_info", externalGatewayInfo).add("routes", routes)
 				    .addValue("\n")
 				    .toString();
 	}
-	
+
 	public static class Routers extends ListResult<NeutronRouter> {
 
 		private static final long serialVersionUID = 1L;
 
 		@JsonProperty("routers")
 		private List<NeutronRouter> routers;
-		
+
 		@Override
 		protected List<NeutronRouter> value() {
 			return routers;
@@ -166,15 +166,15 @@ public class NeutronRouter implements Router {
   {
 
   	private NeutronRouter m;
-  	
+
   	RouterConcreteBuilder() {
   		this(new NeutronRouter());
   	}
-  	
+
   	RouterConcreteBuilder(NeutronRouter m) {
   		this.m = m;
   	}
-  	
+
   	/**
 		 * {@inheritDoc}
 		 */
@@ -200,7 +200,7 @@ public class NeutronRouter implements Router {
 			m.externalGatewayInfo = new NeutronExternalGateway(networkId, enableSNAT);
 			return this;
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -209,7 +209,7 @@ public class NeutronRouter implements Router {
 			m.externalGatewayInfo = (NeutronExternalGateway) externalGateway;
 			return this;
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -218,7 +218,7 @@ public class NeutronRouter implements Router {
 		    m.externalGatewayInfo = new NeutronExternalGateway();
 		    return this;
 		}
-		
+
 
 		/**
 		 * {@inheritDoc}
@@ -247,10 +247,10 @@ public class NeutronRouter implements Router {
 		protected Router reference() {
 			return m;
 		}
-		
+
 		/**
 		 * {@inheritDoc}
-		 */		
+		 */
 		@Override
 		public Router build() {
 			return m;

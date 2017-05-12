@@ -1,8 +1,8 @@
 package org.openstack4j.openstack.dns.v2.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.Objects;
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.model.dns.v2.Action;
 import org.openstack4j.model.dns.v2.Status;
 import org.openstack4j.model.dns.v2.Zone;
@@ -10,8 +10,10 @@ import org.openstack4j.model.dns.v2.ZoneType;
 import org.openstack4j.model.dns.v2.builder.ZoneBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 
 /**
  * zone model class for designate/v2 zone
@@ -145,7 +147,7 @@ public class DesignateZone implements Zone {
      */
     @Override
     public String toString() {
-        return Objects.toStringHelper(this).omitNullValues()
+        return MoreObjects.toStringHelper(this).omitNullValues()
                 .add("id", id)
                 .add("poolId", poolId)
                 .add("projectId", projectId)

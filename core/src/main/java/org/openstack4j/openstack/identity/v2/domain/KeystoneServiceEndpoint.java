@@ -5,15 +5,17 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import org.openstack4j.model.identity.v2.builder.ServiceEndpointBuilder;
 import org.openstack4j.model.identity.v2.Service;
 import org.openstack4j.model.identity.v2.ServiceEndpoint;
+import org.openstack4j.model.identity.v2.builder.ServiceEndpointBuilder;
+import org.openstack4j.openstack.common.ListResult;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import org.openstack4j.openstack.common.ListResult;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -126,7 +128,7 @@ public class KeystoneServiceEndpoint implements ServiceEndpoint {
 	 */
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this).omitNullValues()
+		return MoreObjects.toStringHelper(this).omitNullValues()
 				.add("id", id).add("region", region).add("publicURL", publicURL)
 				.add("internalURL", internalURL).add("adminURL", adminURL)
 				.add("serviceId", serviceId)
